@@ -16,6 +16,7 @@ class TyphoPublishPlugin : Plugin<Project> {
             val publishing = project.extensions.getByType(PublishingExtension::class.java)
             val publication = publishing.publications.create("maven", MavenPublication::class.java)
             publication.from(project.components.getByName("java"))
+            project.findProperty("typho_publish.artifact_id")?.toString()?.let { publication.artifactId = it }
             publishing.repositories.maven {
                 it.name = "typho"
                 it.url = websiteDir.resolve("maven").toURI()
