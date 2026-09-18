@@ -33,6 +33,7 @@ class TyphoPublishPlugin : Plugin<Project> {
                         }
                     }
 
+                    run("git", "pull")
                     run("git", "add", "maven/")
                     run("git", "commit", "-m", "Published ${publication.groupId}:${publication.artifactId}:${publication.version}")
                     run("git", "push")
